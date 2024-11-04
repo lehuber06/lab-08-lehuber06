@@ -1,8 +1,8 @@
-# Your Name Here
+# Your Name Here: Lee Huber
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section:
+# Submission Date: 11/4/2024
+# Lab 08
+# Lab Section: 15
 # Sources, people worked with, help given to:
 # your
 # comments
@@ -14,9 +14,29 @@
 # Other wise return the converted int or float 
 # Floats should only have one decimal point in them 
 
+def int_or_float(num_str):    
+    '''Put anything you want into the num_str string and watch the function work its magic'''
+    number_list = num_str.split(".")
+        
+    num1 = number_list[0]
+    if len(number_list) >= 2:
+        del number_list[2:]
+        num2 = number_list[1]
+
+    if '.' in num_str and (num1 and num2).isnumeric():
+        float_str = f"{num1}.{num2[0]}"
+        return float(float_str)
+
+    elif number_list[0].isnumeric() and len(number_list) == 1:
+        return int(num_str)
+
+    elif num_str.lower() == "exit":
+        return "exit"
+    
+    else:
+        return False
 
 print("*" * 75)
-
 
 # Point-slope y = mx + b
 # This is used in mathematics to determine what the value y would be for any given x
@@ -38,8 +58,51 @@ print("*" * 75)
 # Remember all inputs are strings, but the function needs ints or floats
 # Call your function and print the resulting list
 
-print("*" * 75)
+def slope_intercept():
+    while True:
+        
+        b = int_or_float(input("Type exit to exit\nEnter b here: "))
+        if type(b) != int or float:
+            while type(b) != int or float:
+                print(type(b))
+                b = int_or_float(input("Try again, enter b here: "))
+                if b == "exit":
+                    break
+        elif b == "exit":
+            break
 
+        slope = int_or_float(input("Enter slope here: "))
+        while type(slope) != int or float:
+            slope = int_or_float(input("Try again, enter slope here: "))
+            if slope == "exit":
+                break
+        if slope == "exit":
+            break
+
+        lower_bound = int_or_float(input("Enter lower bound here (whole #'s only): "))
+        while type(lower_bound) != int:
+            lower_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
+            if lower_bound == "exit":
+                break
+        if lower_bound == "exit":
+            break
+
+        upper_bound = int_or_float(input("Enter upper bound here (whole #'s only): "))
+        while type(upper_bound) != int:
+            upper_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
+            if upper_bound == "exit":
+                break
+        if upper_bound == "exit":
+            break
+
+        print("All values below are in the form (y, x):")
+        
+        for x in range(lower_bound, upper_bound + 1):
+            print(f"\t({x}, {int_or_float(f"{((x*slope) + b)}")})")
+
+slope_intercept()
+
+print("*" * 75)
 
 # Write a function to solve the quadratic formula
 # https://en.wikipedia.org/wiki/Quadratic_formula
@@ -48,3 +111,31 @@ print("*" * 75)
 # Create a loop like above to prompt the user for input for the three values
 # Create a second function that just does the square root operation 
     # If the number you are trying to take the square root of is negative, return null
+
+def sqrt(num):
+    num = (num**.5)
+
+while True:
+    a = int_or_float(input("Type exit to exit\nEnter a here: "))
+    if a == "exit":
+        break
+    while type(a) != int or float:
+        a = int_or_float(input("Try again, enter a here: "))
+        if a == "exit":
+            break
+    b = int_or_float(input("Enter b here: "))
+    if b == "exit":
+        break
+    while type(b) != int or float:
+        b = int_or_float(input("Try again, enter b here: "))
+        if b == "exit":
+            break
+    c = int_or_float(input("Enter c here: "))
+    if c == "exit":
+        break
+    while type(c) != int or float:
+        c = int_or_float(input("Try again, enter b here: "))
+        if c == "exit":
+            break
+
+    print(f"Solution 1: {(-b+(sqrt((b**2)-4*a*c)))/2*a}\nSolution 2: {(-b-(sqrt((b**2)-4*a*c)))/2*a}")
