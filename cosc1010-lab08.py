@@ -17,7 +17,6 @@
 def int_or_float(num_str):    
     '''Put anything you want into the num_str string and watch the function work its magic'''
     number_list = num_str.split(".")
-        
     num1 = number_list[0]
     if len(number_list) >= 2:
         del number_list[2:]
@@ -27,7 +26,7 @@ def int_or_float(num_str):
         float_str = f"{num1}.{num2[0]}"
         return float(float_str)
 
-    elif number_list[0].isnumeric() and len(number_list) == 1:
+    elif (number_list[0].isnumeric() or (number_list[0][0] == "-" and number_list[0][1:].isnumeric())) and len(number_list) == 1:
         return int(num_str)
 
     elif num_str.lower() == "exit":
@@ -60,45 +59,34 @@ print("*" * 75)
 
 def slope_intercept():
     while True:
-        
         b = int_or_float(input("Type exit to exit\nEnter b here: "))
-        if type(b) != int or float:
-            while type(b) != int or float:
-                print(type(b))
-                b = int_or_float(input("Try again, enter b here: "))
-                if b == "exit":
-                    break
-        elif b == "exit":
+        if b == "exit":
             break
+        while type(b) not in (int, float):
+            b = int_or_float(input("Try again, enter b here: "))
 
         slope = int_or_float(input("Enter slope here: "))
-        while type(slope) != int or float:
-            slope = int_or_float(input("Try again, enter slope here: "))
-            if slope == "exit":
-                break
         if slope == "exit":
             break
+        while type(slope) not in (int, float):
+            slope = int_or_float(input("Try again, enter slope here: "))
 
         lower_bound = int_or_float(input("Enter lower bound here (whole #'s only): "))
-        while type(lower_bound) != int:
-            lower_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
-            if lower_bound == "exit":
-                break
         if lower_bound == "exit":
             break
+        while type(lower_bound) != int:
+            lower_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
 
         upper_bound = int_or_float(input("Enter upper bound here (whole #'s only): "))
-        while type(upper_bound) != int:
-            upper_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
-            if upper_bound == "exit":
-                break
         if upper_bound == "exit":
             break
-
+        while type(upper_bound) != int:
+            upper_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
+    
         print("All values below are in the form (y, x):")
         
         for x in range(lower_bound, upper_bound + 1):
-            print(f"\t({x}, {int_or_float(f"{((x*slope) + b)}")})")
+            print(f"\t({x}, {int_or_float(str((x*slope) + b))})")
 
 slope_intercept()
 
@@ -119,23 +107,18 @@ while True:
     a = int_or_float(input("Type exit to exit\nEnter a here: "))
     if a == "exit":
         break
-    while type(a) != int or float:
+    while type(a) not in (int, float):
+        print
         a = int_or_float(input("Try again, enter a here: "))
-        if a == "exit":
-            break
     b = int_or_float(input("Enter b here: "))
     if b == "exit":
         break
-    while type(b) != int or float:
+    while type(b) not in (int, float):
         b = int_or_float(input("Try again, enter b here: "))
-        if b == "exit":
-            break
     c = int_or_float(input("Enter c here: "))
     if c == "exit":
         break
-    while type(c) != int or float:
-        c = int_or_float(input("Try again, enter b here: "))
-        if c == "exit":
-            break
+    while type(c) not in (int, float):
+        c = int_or_float(input("Try again, enter c here: "))
 
-    print(f"Solution 1: {(-b+(sqrt((b**2)-4*a*c)))/2*a}\nSolution 2: {(-b-(sqrt((b**2)-4*a*c)))/2*a}")
+    print(f"Solution 1: {(-b+sqrt((b**2)-4*a*c))/2*a}\nSolution 2: {(-b-(sqrt((b**2)-4*a*c)))/2*a}")
