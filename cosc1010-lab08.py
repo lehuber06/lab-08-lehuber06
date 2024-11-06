@@ -68,25 +68,41 @@ while True:
         break
     while type(b) not in (int, float):
         b = int_or_float(input("Try again, enter b here: "))
+        if b == "exit":
+            break
+    if b == "exit":
+        break
 
     slope = int_or_float(input("Enter slope here: "))
     if slope == "exit":
         break
     while type(slope) not in (int, float):
         slope = int_or_float(input("Try again, enter slope here: "))
+        if slope == "exit":
+            break
+    if slope == "exit":
+        break
 
     lower_bound = int_or_float(input("Enter lower bound here (whole #'s only): "))
     if lower_bound == "exit":
         break
     while type(lower_bound) != int:
         lower_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
+        if lower_bound == "exit":
+            break
+    if lower_bound == "exit":
+        break
 
     upper_bound = int_or_float(input("Enter upper bound here (whole #'s only): "))
     if upper_bound == "exit":
         break
     while type(upper_bound) != int:
         upper_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
-    
+        if upper_bound == "exit":
+            break
+    if upper_bound == "exit":
+        break
+
     print("All values below are in the form (y, x):")
         
     print(slope_intercept(b, slope, lower_bound, upper_bound))
@@ -121,18 +137,32 @@ while True:
         break
     while type(a) not in (int, float):
         a = int_or_float(input("Try again, enter a here: "))
+        if a == "exit":
+            break
+    if a == "exit":
+        break
 
     b = int_or_float(input("Enter b here: "))
     if b == "exit":
         break
     while type(b) not in (int, float):
         b = int_or_float(input("Try again, enter b here: "))
+        if b == "exit":
+            break
+    if b == "exit":
+        break
+
 
     c = int_or_float(input("Enter c here: "))
     if c == "exit":
         break
     while type(c) not in (int, float):
         c = int_or_float(input("Try again, enter c here: "))
+        if c == "exit":
+            break
+    if c == "exit":
+        break
+
 
     if quadratic(a, b, c) != False:
         print(quadratic(a, b, c))
