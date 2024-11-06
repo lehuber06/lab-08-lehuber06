@@ -61,30 +61,35 @@ def slope_intercept(b, slope, lower_bound, upper_bound):
     for x in range(lower_bound, upper_bound + 1):
             print(f"\t({x}, {int_or_float(str((x*slope) + b))})")
 
-b = int_or_float(input("Type exit to exit\nEnter b here: "))
-
-while (b or slope or lower_bound or upper_bound) != "exit":
+while True:
     
     b = int_or_float(input("Type exit to exit\nEnter b here: "))
+    if b == "exit":
+        break
     while type(b) not in (int, float):
         b = int_or_float(input("Try again, enter b here: "))
 
     slope = int_or_float(input("Enter slope here: "))
+    if slope == "exit":
+        break
     while type(slope) not in (int, float):
         slope = int_or_float(input("Try again, enter slope here: "))
 
     lower_bound = int_or_float(input("Enter lower bound here (whole #'s only): "))
+    if lower_bound == "exit":
+        break
     while type(lower_bound) != int:
         lower_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
 
     upper_bound = int_or_float(input("Enter upper bound here (whole #'s only): "))
+    if upper_bound == "exit":
+        break
     while type(upper_bound) != int:
         upper_bound = int_or_float(input("Try again, enter lower bound here (whole #'s only): "))
     
     print("All values below are in the form (y, x):")
         
-if (b or slope or lower_bound or upper_bound) != "exit":
-        print(slope_intercept(b, slope, lower_bound, upper_bound))
+    print(slope_intercept(b, slope, lower_bound, upper_bound))
 
 print("*" * 75)
 
@@ -109,19 +114,23 @@ def quadratic(a, b, c):
     else:
         return False
 
-
-a = int_or_float(input("Type exit to exit\nEnter a here: "))
-
-while (a or b or c) != "exit":
+while True:
     
+    a = int_or_float(input("Type exit to exit\nEnter a here: "))
+    if a == "exit":
+        break
     while type(a) not in (int, float):
         a = int_or_float(input("Try again, enter a here: "))
 
     b = int_or_float(input("Enter b here: "))
+    if b == "exit":
+        break
     while type(b) not in (int, float):
         b = int_or_float(input("Try again, enter b here: "))
 
     c = int_or_float(input("Enter c here: "))
+    if c == "exit":
+        break
     while type(c) not in (int, float):
         c = int_or_float(input("Try again, enter c here: "))
 
@@ -129,3 +138,4 @@ while (a or b or c) != "exit":
         print(quadratic(a, b, c))
     else:
         print("The solutions were imaginary, please try different values.")
+
