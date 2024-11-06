@@ -26,7 +26,7 @@ def int_or_float(num_str):
         float_str = f"{num1}.{num2[0]}"
         return float(float_str)
 
-    elif (number_list[0].isnumeric() or (number_list[0][0] == "-" and number_list[0][1:].isnumeric())) and len(number_list) == 1:
+    elif (number_list[0].isnumeric() or (len(number_list[0]) > 0 and number_list[0][0] == "-" and number_list[0][1:].isnumeric())) and len(number_list) == 1:
         return int(num_str)
 
     elif num_str.lower() == "exit":
@@ -126,7 +126,7 @@ def sqrt(num):
 def quadratic(a, b, c):
     sqroot = sqrt((b**2)-4*a*c)
     if sqroot != False:
-        return f"Solution 1: {((-b+sqroot)/(2*a))}\nSolution 2: {((-b-sqroot)/(2*a))}"
+        return f"Solution 1: {int_or_float(str((-b+sqroot)/(2*a)))}\nSolution 2: {int_or_float(str((-b-sqroot)/(2*a)))}"
     else:
         return False
 
